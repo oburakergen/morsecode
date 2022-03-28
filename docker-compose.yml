@@ -1,0 +1,28 @@
+version: '3.4'
+
+networks:
+  sw-br-network :
+    driver: bridge
+
+services:
+  redis:
+    container_name: redis
+    build:
+      context: ./redis
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - sw-br-network
+  morsecode:
+    container_name: morsecode
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - redis
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
