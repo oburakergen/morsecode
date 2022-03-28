@@ -1,4 +1,4 @@
-# Express.js-Redis-Axios-Docker examples
+# Express.js-Redis-Axios-Docker example
 
 ### Installation
 docker-compose build && docker-compose up -d
